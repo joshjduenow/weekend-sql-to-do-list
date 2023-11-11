@@ -21,13 +21,10 @@ function getTodos() {
 
 function addToDo(event) {
     event.preventDefault();
-    
+
     let incToDo = {
         text: document.getElementById('newToDo').value,
-        // isComplete: document.getElementById('complete').value,
-        //   gender: document.getElementById('genderIn').value,
-        //   transfer: document.getElementById('readyForTransferIn').value,
-        //   notes: document.getElementById('notesIn').value
+
 
 
     }
@@ -51,49 +48,55 @@ function renderTodos(toDos) {
     viewToDo.innerHTML = '';
 
     for (let toDo of toDos) {
-        viewToDo.innerHTML += ` <tr data-testid="toDoItem" data-toDoId="${toDo.id}">
-      <td>${toDo.text}</td>
+        viewToDo.innerHTML += ` <tr data-toDoId="${toDo.id}">
+      <td data-testid="toDoTextInput">${toDo.text}</td>
       <td><button onclick="deleteToDo(event)">Delete</button>
-      <td>${toDo.isComplete != true ? `<button onclick="completeToDo(event,${toDo.id})">Complete</button>` : ''}</td>
+      <td>${toDo.isComplete != true ? `<button onclick="completeToDo(event,${toDo.id})">Complete</button>` : '✅'}</td>
 
       </tr>`
+        newToDo.value = '';
+
     }
 
 }
 function deleteToDo(event) {
     event.preventDefault();
-  
+
     let deleteToDo = event.target.closest('tr');
     let toDoId = deleteToDo.getAttribute('data-toDoId');
     console.log("check delete button and toDoId", deleteToDo, toDoId)
-  
+
     axios({
-      method: 'DELETE',
-      url: `/todos/${toDoId}`
+        method: 'DELETE',
+        url: `/todos/${toDoId}`
     }).then(function (response) {
         getTodos();
-  
-    }).catch(function (error) {
-      console.log('error in DELETE', error);
-    });
-  }
 
-  function completeToDo(event,id) {
+    }).catch(function (error) {
+        console.log('error in DELETE', error);
+    });
+}
+
+function completeToDo(event, id) {
     event.preventDefault()
     console.log('in completeToDo');
     console.log("check event and id", event, id)
-  
+
     axios({
-      method: 'PUT',
-      url: `/todos/${id}`
+        method: 'PUT',
+        url: `/todos/${id}`
     }).then(function (response) {
         getTodos();
-  
+
     }).catch(function (error) {
-      console.log('error in PUT', error);
+        console.log('error in PUT', error);
     });
-    
-  
-  }
+
+
+}
 //<td><button onclick="deleteToDo(event)">Delete</button>
 //<td>${toDo.transfer != true ? `<button onclick="saveKoala(event,${koala.id})">Transfer</button>`:''}</td>
+//   if (isComplete === true) {
+//     isComplete.innerHTML = `<button class='over-budget'> ${totalMonthly}</p>`
+// }
+// else { monthlySalary.innerHTML = `<p>${totalMonthly}</p>` };}

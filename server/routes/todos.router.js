@@ -4,7 +4,7 @@ const express = require('express');
 
 // GET ROUTE
 router.get('/', (req, res) => {
-    let queryText = 'SELECT * FROM "todos" ORDER BY "text";';
+    let queryText = 'SELECT * FROM "todos"';
     pool.query(queryText).then(result => {
         console.log('in router.get',);
         res.send(result.rows);

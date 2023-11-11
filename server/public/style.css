@@ -1,0 +1,79 @@
+html {
+    background-color: black;
+}
+header {
+    
+}
+
+h1 {
+    width: 500px;
+    margin-left: 450px;
+    text-align: center;
+    color: whitesmoke;
+    text-decoration-line: underline;
+    text-decoration-color: dimgray;
+    text-decoration-style: unset;
+    font-size: 40px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-radius: 20%;
+    border-bottom-left-radius: 20%;
+    border-bottom-right-radius: 20%;
+    border-bottom-style: double;
+    border-bottom-width: 10px;
+    border-left-style: double;
+    border-left-width: 35px;
+    border-right-style: double;
+    border-right-width: 35px;
+    border-top-left-radius: 20%;
+    border-top-right-radius: 20%;
+    border-top-style: double;
+    border-top-width: 10px;
+    border-style: groove;
+    border-color: dimgray;
+    
+}
+input {
+    color: whitesmoke;
+    background-color: black;
+    width: 125px;
+    height: 25px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+h2 {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+  }
+  #emp {
+    margin-top: 100px;
+    text-align: center;
+  }
+
+table {
+    width: 60%;
+    text-align: center;
+    margin-left: 225px;
+    color: whitesmoke;
+  }
+  table, th, td {
+    border: 5px solid dimgray;
+    border-collapse: collapse;
+    height: 2.15em;
+  }
+  th, td {
+    padding: .5em;
+    min-width: 3.5em;
+  }
+
+
+  .over-budget {
+    width: 10%;
+    size: 35px;
+    text-align: right;
+    margin-top: 15px;
+    margin-left: 900px;
+    padding: 0px;
+    color: red;
+    background-color: black;
+  }
