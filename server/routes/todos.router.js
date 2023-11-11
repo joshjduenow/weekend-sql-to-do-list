@@ -48,4 +48,19 @@ router.delete('/:id', (req, res) => {
         })
 });
 
+// PUT ROUTE
+router.put('/:id', (req, res) => {
+    let idToUpdate = req.params.id;
+    let queryText = 'UPDATE "todos" SET "isComplete" = true WHERE "id" = $1;';
+
+    const sqValues = [idToUpdate]
+    pool.query(queryText, sqValues)
+        .then((result) => {
+            res.sendStatus(200);
+        })
+        .catch((dbError) => {
+            console.log("mark todo complete failed", dbError);
+            res.sendStatus(500);
+        })
+});
 module.exports = router;

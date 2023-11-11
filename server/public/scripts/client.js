@@ -20,6 +20,8 @@ function getTodos() {
 // POST TO-DO FUNCTION
 
 function addToDo(event) {
+    event.preventDefault();
+    
     let incToDo = {
         text: document.getElementById('newToDo').value,
         // isComplete: document.getElementById('complete').value,
@@ -51,9 +53,8 @@ function renderTodos(toDos) {
     for (let toDo of toDos) {
         viewToDo.innerHTML += ` <tr data-testid="toDoItem" data-toDoId="${toDo.id}">
       <td>${toDo.text}</td>
-      <td>${toDo.isComplete}</td>
       <td><button onclick="deleteToDo(event)">Delete</button>
-      <td>${toDo.isComplete != true ? `<button onclick="toDoComplete(event,${toDo.id})">Complete</button>` : ''}</td>
+      <td>${toDo.isComplete != true ? `<button onclick="completeToDo(event,${toDo.id})">Complete</button>` : ''}</td>
 
       </tr>`
     }
@@ -75,6 +76,24 @@ function deleteToDo(event) {
     }).catch(function (error) {
       console.log('error in DELETE', error);
     });
+  }
+
+  function completeToDo(event,id) {
+    event.preventDefault()
+    console.log('in completeToDo');
+    console.log("check event and id", event, id)
+  
+    axios({
+      method: 'PUT',
+      url: `/todos/${id}`
+    }).then(function (response) {
+        getTodos();
+  
+    }).catch(function (error) {
+      console.log('error in PUT', error);
+    });
+    
+  
   }
 //<td><button onclick="deleteToDo(event)">Delete</button>
 //<td>${toDo.transfer != true ? `<button onclick="saveKoala(event,${koala.id})">Transfer</button>`:''}</td>
