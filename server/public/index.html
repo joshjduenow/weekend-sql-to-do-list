@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,13 +9,27 @@
   <script defer src="./scripts/client.js"></script>
   <title>SQL TO-DO List</title>
 </head>
+
 <body>
   <header>
     <h1>SQL TO-DO List</h1>
   </header>
   <section id="addToDo">
     <input data-testid="toDoTextInput" type="text" id="newToDo" value="" placeholder="To-Do">
-    <button data-testid="submitButton" onclick="addToDo(event)"type="button" id="submitButton">Add Task</button>
-
+    <button data-testid="submitButton" onclick="addToDo(event)" type="button" id="addTask">Add Task</button>
+  </section>
+  <section>
+    <h2>To-Do :</h2>
+    <table>
+      <thead>
+        <tr data-testid="toDoItem">
+          <th>Task</th>
+          <th>Mark Complete</th>
+        </tr>
+      </thead>
+      <tbody id="viewToDo">
+      </tbody>
+    </table>
 </body>
+
 </html>
