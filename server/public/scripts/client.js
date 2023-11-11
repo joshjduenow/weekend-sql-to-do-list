@@ -1,5 +1,7 @@
-console.log('JS is sourced!');
 
+
+console.log('JS is sourced!');
+getTodos();
 
 
 // GET TO-DO FUNCTION
@@ -7,39 +9,71 @@ function getTodos() {
     axios({
         type: 'GET',
         url: '/todos'
-    }).then(res => {
-    console.log('getTodos() response', response.data);
-        renderTodos(res.data)
+    }).then(function (response) {
+        console.log('getTodos() response', response.data);
+        renderTodos(response.data)
     }).catch(function (error) {
         console.log('error in GET', error);
-      });
+    });
 }
 
 // POST TO-DO FUNCTION
+
 function addToDo(event) {
     let incToDo = {
-      name: document.getElementById('newToDo').value,
-    //   age: document.getElementById('ageIn').value,
-    //   gender: document.getElementById('genderIn').value,
-    //   transfer: document.getElementById('readyForTransferIn').value,
-    //   notes: document.getElementById('notesIn').value
-  
-  
+        text: document.getElementById('newToDo').value,
+        // isComplete: document.getElementById('complete').value,
+        //   gender: document.getElementById('genderIn').value,
+        //   transfer: document.getElementById('readyForTransferIn').value,
+        //   notes: document.getElementById('notesIn').value
+
+
     }
     console.log(incToDo);
     axios({
-      method: 'POST',
-      url: '/todos',
-      data: incToDo,
+        method: 'POST',
+        url: '/todos',
+        data: incToDo,
     }).then(function (response) {
-      console.log('incToDo()', response.data);
-      getTodos();
+        console.log('incToDo() response', response.data);
+        getTodos();
     }).catch(function (error) {
-      console.log('Error in POST', error)
-      alert('Unable to add todo at this time. Please try again later.');
+        console.log('Error in POST', error)
+        alert('Unable to add todo at this time. Please try again later.');
+    });
+}
+
+function renderTodos(toDos) {
+    console.log(toDos);
+    const viewToDo = document.getElementById('viewToDo')
+    viewToDo.innerHTML = '';
+
+    for (let toDo of toDos) {
+        viewToDo.innerHTML += ` <tr data-testid="toDoItem" data-toDoId="${toDo.id}">
+      <td>${toDo.text}</td>
+      <td>${toDo.isComplete}</td>
+      <td>${toDo.isComplete != true ? `<button onclick="toDoComplete(event,${toDo.id})">Complete</button>` : ''}</td>
+
+      </tr>`
+    }
+
+}
+function deleteToDo(event) {
+    event.preventDefault();
+  
+    let deleteToDo = event.target.closest('tr');
+    let toDoId = deleteToDo.getAttribute('data-toDoId');
+    console.log("check delete button and toDoId", deleteToDo, toDoId)
+  
+    axios({
+      method: 'DELETE',
+      url: `/todos/${toDoId}`
+    }).then(function (response) {
+        getTodos();
+  
+    }).catch(function (error) {
+      console.log('error in DELETE', error);
     });
   }
-
-function renderTodos(todos) {
-    
-}
+//<td><button onclick="deleteToDo(event)">Delete</button>
+//<td>${toDo.transfer != true ? `<button onclick="saveKoala(event,${koala.id})">Transfer</button>`:''}</td>

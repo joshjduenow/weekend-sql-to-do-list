@@ -4,7 +4,7 @@ const express = require('express');
 
 // GET ROUTE
 router.get('/', (req, res) => {
-    let queryText = 'SELECT * FROM "todos";';
+    let queryText = 'SELECT * FROM "todos" ORDER BY "text";';
     pool.query(queryText).then(result => {
         console.log('in router.get',);
         res.send(result.rows);
@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
 
     let queryText = `INSERT INTO "todos" ("text")
                      VALUES ($1);`;
-    pool.query(queryText, [newToDo.name])
+    pool.query(queryText, [newToDo.text])
         .then(result => {
             res.sendStatus(201);
         })
@@ -32,5 +32,20 @@ router.post('/', (req, res) => {
         });
 });
 
+// DELETE ROUTE
+router.delete('/:id', (req, res) => {
+    let idToDelete = req.params.id;
+    let queryText = 'DELETE FROM "todos" WHERE "id" = $1;';
+
+    const sqValues = [idToDelete]
+    pool.query(queryText, sqValues)
+        .then((result) => {
+            res.sendStatus(200);
+        })
+        .catch((dbError) => {
+            console.log("delete koala failed", dbError);
+            res.sendStatus(500);
+        })
+});
 
 module.exports = router;
