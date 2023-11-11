@@ -48,10 +48,10 @@ function renderTodos(toDos) {
     viewToDo.innerHTML = '';
 
     for (let toDo of toDos) {
-        viewToDo.innerHTML += ` <tr data-toDoId="${toDo.id}">
-      <td data-testid="toDoTextInput">${toDo.text}</td>
-      <td><button onclick="deleteToDo(event)">Delete</button>
-      <td>${toDo.isComplete != true ? `<button onclick="completeToDo(event,${toDo.id})">Complete</button>` : '✅'}</td>
+        viewToDo.innerHTML += ` <tr data-testid="toDoItem" data-toDoId="${toDo.id}">
+      <td>${toDo.text}</td>
+      <td><button data-testid="deleteButton" onclick="deleteToDo(event)">Delete</button>
+      <td>${toDo.isComplete != true ? `<button data-testid="completeButton" onclick="completeToDo(event,${toDo.id})">Complete</button>` : '✅'}</td>
 
       </tr>`
         newToDo.value = '';
