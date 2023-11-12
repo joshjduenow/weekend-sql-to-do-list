@@ -48,18 +48,19 @@ function renderTodos(toDos) {
     const viewToDo = document.getElementById('viewToDo')
     viewToDo.innerHTML = '';
 
-
     for (let toDo of toDos) {
         viewToDo.innerHTML += ` <tr data-testid="toDoItem" data-toDoId="${toDo.id}">
       <td>${toDo.text}</td>
       <td><button data-testid="deleteButton" onclick="deleteToDo(event)">Delete</button></td>
-      <td><button class="completed" onclick="completeToDo(${toDo.id})" data-testid="completeButton">Complete</button></td>
+      <td>${toDo.isComplete != true ? `<button data-testid="completeButton" onclick="completeToDo(event,${toDo.id})">Complete</button>` : '✅'}</td>
         
       </tr>`
-
     }
 
 }
+
+
+
 
 
 function deleteToDo(event) {
@@ -81,8 +82,7 @@ function deleteToDo(event) {
 }
 
 function completeToDo(event, id) {
-    event.preventDefault();
-
+    event.preventDefault()
     console.log('in completeToDo');
     console.log("check event and id", event, id)
 
@@ -90,7 +90,6 @@ function completeToDo(event, id) {
         method: 'PUT',
         url: `/todos/${id}`
     }).then(function (response) {
-        element.classList.add('completed')
         getTodos();
 
     }).catch(function (error) {
@@ -111,6 +110,3 @@ function completeToDo(event, id) {
 //     taskComplete.innerHTML = `<button class='task-complete'>${Complete}</button>`
 // }
 // else { taskComplete. innerHTML = `<button>${Complete}</button>` };
-// let completeToDo = target.closest('tr')
-// let completeId = completeToDo.getAttribute('data-toDoId');
-// console.log("check complete button", completeId, completeToDo)
