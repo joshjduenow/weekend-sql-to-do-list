@@ -25,8 +25,6 @@ function addToDo(event) {
     let incToDo = {
         text: document.getElementById('newToDo').value,
 
-
-
     }
     console.log(incToDo);
     axios({
@@ -45,22 +43,25 @@ function addToDo(event) {
 
 function renderTodos(toDos) {
     console.log(toDos);
-    const viewToDo = document.getElementById('viewToDo')
+    const viewToDo = document.getElementById('viewToDo');
     viewToDo.innerHTML = '';
 
     for (let toDo of toDos) {
-        viewToDo.innerHTML += ` <tr data-testid="toDoItem" data-toDoId="${toDo.id}">
+        console.log(toDo.isComplete);
+        let isComplete = '';
+        if (toDo.isComplete){
+            isComplete = 'completed'
+          }
+        viewToDo.innerHTML += ` <tr class="${isComplete}" data-testid="toDoItem" data-toDoId="${toDo.id}">
       <td>${toDo.text}</td>
       <td><button data-testid="deleteButton" onclick="deleteToDo(event)">Delete</button></td>
-      <td>${toDo.isComplete != true ? `<button data-testid="completeButton" onclick="completeToDo(event,${toDo.id})">Complete</button>` : '✅'}</td>
+      <td><button data-testid="completeButton" onclick="completeToDo(event, ${toDo.id})">Complete</button></td>
         
       </tr>`
     }
 
+
 }
-
-
-
 
 
 function deleteToDo(event) {
@@ -81,14 +82,19 @@ function deleteToDo(event) {
     });
 }
 
-function completeToDo(event, id) {
-    event.preventDefault()
+
+function completeToDo(event, compId) {
+    event.preventDefault();
+
+    // let compButton = event.target.closest('tr');
+    // compButton.classList.add('completed');
+
     console.log('in completeToDo');
-    console.log("check event and id", event, id)
+    console.log("check event and id", event, compId)
 
     axios({
         method: 'PUT',
-        url: `/todos/${id}`
+        url: `/todos/${compId}`
     }).then(function (response) {
         getTodos();
 
