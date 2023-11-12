@@ -42,23 +42,26 @@ function addToDo(event) {
     });
 }
 
+
 function renderTodos(toDos) {
     console.log(toDos);
     const viewToDo = document.getElementById('viewToDo')
     viewToDo.innerHTML = '';
 
+
     for (let toDo of toDos) {
         viewToDo.innerHTML += ` <tr data-testid="toDoItem" data-toDoId="${toDo.id}">
       <td>${toDo.text}</td>
-      <td><button data-testid="deleteButton" onclick="deleteToDo(event)">Delete</button>
-      <td>${toDo.isComplete != true ? `<button data-testid="completeButton" onclick="completeToDo(event,${toDo.id})">Complete</button>` : '✅'}</td>
-
+      <td><button data-testid="deleteButton" onclick="deleteToDo(event)">Delete</button></td>
+      <td><button class="completed" onclick="completeToDo(${toDo.id})" data-testid="completeButton">Complete</button></td>
+        
       </tr>`
-        newToDo.value = '';
 
     }
 
 }
+
+
 function deleteToDo(event) {
     event.preventDefault();
 
@@ -78,7 +81,8 @@ function deleteToDo(event) {
 }
 
 function completeToDo(event, id) {
-    event.preventDefault()
+    event.preventDefault();
+
     console.log('in completeToDo');
     console.log("check event and id", event, id)
 
@@ -86,6 +90,7 @@ function completeToDo(event, id) {
         method: 'PUT',
         url: `/todos/${id}`
     }).then(function (response) {
+        element.classList.add('completed')
         getTodos();
 
     }).catch(function (error) {
@@ -100,3 +105,12 @@ function completeToDo(event, id) {
 //     isComplete.innerHTML = `<button class='over-budget'> ${totalMonthly}</p>`
 // }
 // else { monthlySalary.innerHTML = `<p>${totalMonthly}</p>` };}
+// <td>${toDo.isComplete != true ? `<button data-testid="completeButton" onclick="completeToDo(event,${toDo.id})">Complete</button>` : '✅'}</td>
+// let taskComplete = document.getElementById('task-complete')
+// if (taskComplete === false) {
+//     taskComplete.innerHTML = `<button class='task-complete'>${Complete}</button>`
+// }
+// else { taskComplete. innerHTML = `<button>${Complete}</button>` };
+// let completeToDo = target.closest('tr')
+// let completeId = completeToDo.getAttribute('data-toDoId');
+// console.log("check complete button", completeId, completeToDo)

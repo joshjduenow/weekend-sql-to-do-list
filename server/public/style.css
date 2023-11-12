@@ -55,13 +55,7 @@ table {
   }
 
 
-  .over-budget {
-    width: 10%;
-    size: 35px;
-    text-align: right;
-    margin-top: 15px;
-    margin-left: 900px;
-    padding: 0px;
-    color: red;
+  .completed{
+    color: green;
     background-color: black;
   }
