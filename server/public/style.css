@@ -55,6 +55,6 @@ table {
   }
 
   .completed {
-    color: rgb(30, 0, 128);
-    background-color: black;
+    color: black;
+    background-color: green;
   }

@@ -4,9 +4,9 @@ const express = require('express');
 
 // GET ROUTE
 router.get('/', (req, res) => {
-    let queryText = 'SELECT * FROM "todos" ORDER BY "id";';
+    let queryText = 'SELECT * FROM "todos" ORDER BY "isComplete";';
     pool.query(queryText).then(result => {
-        console.log('in router.get',);
+        console.log('in router.get');
         res.send(result.rows);
     })
         .catch(error => {
@@ -43,7 +43,7 @@ router.delete('/:id', (req, res) => {
             res.sendStatus(200);
         })
         .catch((dbError) => {
-            console.log("delete koala failed", dbError);
+            console.log("delete todo failed", dbError);
             res.sendStatus(500);
         })
 });
