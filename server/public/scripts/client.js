@@ -49,9 +49,9 @@ function renderTodos(toDos) {
     for (let toDo of toDos) {
         console.log(toDo.isComplete);
         let isComplete = '';
-        if (toDo.isComplete){
+        if (toDo.isComplete) {
             isComplete = 'completed'
-          }
+        }
         viewToDo.innerHTML += ` <tr class="${isComplete}" data-testid="toDoItem" data-toDoId="${toDo.id}">
       <td>${toDo.text}</td>
       <td><button data-testid="deleteButton" onclick="deleteToDo(event)">Delete</button></td>
@@ -85,10 +85,6 @@ function deleteToDo(event) {
 
 function completeToDo(event, compId) {
     event.preventDefault();
-
-    // let compButton = event.target.closest('tr');
-    // compButton.classList.add('completed');
-
     console.log('in completeToDo');
     console.log("check event and id", event, compId)
 
