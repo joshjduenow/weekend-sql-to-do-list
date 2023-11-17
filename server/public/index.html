@@ -16,10 +16,22 @@
   <header>
     <h1>Josh's Weekend TO-DO List</h1>
   </header>
-  <section id="addToDo">
-    <input data-testid="toDoTextInput" type="text" id="newToDo" value="" placeholder="To-Do">
-    <button data-testid="submitButton" onclick="addToDo(event)" type="button" id="addTask" class="btn btn-secondary">Add Task</button>
-  </section>
+  <form>
+    <input 
+       data-testid="toDoTextInput" 
+       type="text" 
+       id="newToDo"
+       placeholder="To-Do"
+    >
+    <button 
+        data-testid="submitButton"
+        onclick="addToDo(event)"
+        type="button"
+        id="addTask"
+        class="btn btn-secondary">
+        Add Task
+    </button>
+  </form>
   <section>
     <h2>To-Do :</h2>
     <table class="table table-dark table-hover">

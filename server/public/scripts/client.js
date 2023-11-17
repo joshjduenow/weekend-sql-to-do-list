@@ -17,30 +17,6 @@ function getTodos() {
     });
 }
 
-// POST TO-DO FUNCTION
-
-function addToDo(event) {
-    event.preventDefault();
-
-    let incToDo = {
-        text: document.getElementById('newToDo').value,
-
-    }
-    console.log(incToDo);
-    axios({
-        method: 'POST',
-        url: '/todos',
-        data: incToDo,
-    }).then(function (response) {
-        console.log('incToDo() response', response.data);
-        getTodos();
-    }).catch(function (error) {
-        console.log('Error in POST', error)
-        alert('Unable to add todo at this time. Please try again later.');
-    });
-}
-
-
 function renderTodos(toDos) {
     console.log(toDos);
     const viewToDo = document.getElementById('viewToDo');
@@ -55,12 +31,36 @@ function renderTodos(toDos) {
         viewToDo.innerHTML += 
      `<tr data-testid="toDoItem" data-toDoId="${toDo.id}">
         <td>${toDo.text}</td>
-        <td><button data-testid="deleteButton" onclick="deleteToDo(event)" class="btn btn-outline-danger" data-bs-toggle="tooltip" title="Are You Sure?!">Delete</button></td>
+        <td><button data-testid="deleteButton" onclick="deleteToDo(event)" class="btn btn-danger" data-bs-toggle="tooltip" title="Are You Sure?!">Delete</button></td>
         <td><button data-testid="completeButton" class="${isComplete}" onclick="completeToDo(event, ${toDo.id})">Complete</button></td>
       </tr>`
     }
 
 
+}
+
+// POST TO-DO FUNCTION
+
+function addToDo(event) {
+    event.preventDefault();
+
+    let toDoTextInput = document.getElementById('newToDo')
+
+    let newToDoText = toDoTextInput.value
+    
+ 
+    axios({
+        method: 'POST',
+        url: '/todos',
+        data: { text: newToDoText }
+    }).then(function (response) {
+        toDoTextInput.value = ''
+        console.log('incToDo() response', response.data);
+        getTodos();
+    }).catch(function (error) {
+        console.log('Error in POST', error)
+        alert('Unable to add todo at this time. Please try again later.');
+    });
 }
 
 
