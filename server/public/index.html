@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
   <meta charset="UTF-8">
@@ -18,11 +18,11 @@
   </header>
   <section id="addToDo">
     <input data-testid="toDoTextInput" type="text" id="newToDo" value="" placeholder="To-Do">
-    <button data-testid="submitButton" onclick="addToDo(event)" type="button" id="addTask">Add Task</button>
+    <button data-testid="submitButton" onclick="addToDo(event)" type="button" id="addTask" class="btn btn-secondary">Add Task</button>
   </section>
   <section>
     <h2>To-Do :</h2>
-    <table>
+    <table class="table table-dark table-hover">
       <thead>
       </thead>
       <tbody id="viewToDo">

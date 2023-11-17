@@ -55,7 +55,7 @@ function renderTodos(toDos) {
         viewToDo.innerHTML += 
      `<tr data-testid="toDoItem" data-toDoId="${toDo.id}">
         <td>${toDo.text}</td>
-        <td><button data-testid="deleteButton" onclick="deleteToDo(event)">Delete</button></td>
+        <td><button data-testid="deleteButton" onclick="deleteToDo(event)" class="btn btn-outline-danger" data-bs-toggle="tooltip" title="Are You Sure?!">Delete</button></td>
         <td><button data-testid="completeButton" class="${isComplete}" onclick="completeToDo(event, ${toDo.id})">Complete</button></td>
       </tr>`
     }

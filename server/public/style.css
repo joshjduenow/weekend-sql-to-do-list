@@ -12,7 +12,7 @@ h1 {
     text-decoration-color: dimgray;
     text-decoration-style: unset;
     font-size: 40px;
-    border-radius: 20%;
+    /* border-radius: 20%;
     border-bottom-left-radius: 20%;
     border-bottom-right-radius: 20%;
     border-bottom-style: double;
@@ -26,7 +26,7 @@ h1 {
     border-top-style: double;
     border-top-width: 10px;
     border-style: groove;
-    border-color: dimgray;
+    border-color: dimgray; */
     
 }
 input {
@@ -37,22 +37,22 @@ input {
 
 }
 
-h2 {
+/* h2 {
     color: whitesmoke;
     border: 5px inset whitesmoke;
-  }
+  } */
 
 table {
     width: 60%;
     text-align: center;
-    color: whitesmoke;
-  }
+}
+  /* }
   table, th, td {
     border: 5px inset whitesmoke;
     border-collapse: collapse;
     height: 2.15em;
     background-color: dimgray;
-  }
+  } */
 
   .completed {
     color: black;
